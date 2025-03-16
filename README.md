@@ -14,10 +14,10 @@ This project presents a state-of-the-art multi-robot system for collaborative ex
   The system employs a distributed SLAM framework where each robot autonomously constructs a local occupancy grid map using sensor data and later fuses it into a global map. This is achieved through iterative registration (using ICP) and graph optimization (using frameworks like g2o) to minimize drift and error.
 
 - **Decentralized Communication:**  
-  ROS2 multi-master configuration facilitates real-time message exchange and data synchronization. The decentralized approach enables robust role assignment (leader/follower) and task allocation through auction-based or consensus algorithms.
+  A ROS2 multi-master configuration facilitates real-time message exchange and data synchronization. This decentralized approach enables robust role assignment (leader/follower) and task allocation through auction-based or consensus algorithms.
 
 - **Formation Control:**  
-  Formation and dynamic task allocation are managed via consensus protocols and potential field methods, ensuring coordinated coverage of the workspace.
+  Formation and dynamic task allocation are managed via consensus protocols and potential field methods, ensuring coordinated workspace coverage.
 
 ---
 
@@ -27,30 +27,30 @@ This project presents a state-of-the-art multi-robot system for collaborative ex
 
 - **Sensor Fusion & Perception:**  
   Multiple sensor streams (LiDAR, TOF, IMUs) are fused using transformation matrices (from calibration) and filtering algorithms (e.g., voxel grid filtering for point clouds). The underlying model transforms raw sensor measurements \( z \) to an estimated state \( \hat{x} \) using:
-  \[
-  \hat{x} = f(x, u) + w, \quad z = h(\hat{x}) + v
-  \]
+  
+  $$ \hat{x} = f(x, u) + w, \quad z = h(\hat{x}) + v $$
+  
   where \( f \) is the motion model, \( h \) is the measurement model, and \( w, v \) denote process and measurement noise.
 
 - **SLAM and Graph Optimization:**  
   Local maps are generated using Bayesian occupancy grids and refined via scan matching. The pose graph is defined by:
-  \[
-  \min_{X} \sum_{i,j} \| z_{ij} - h(x_i, x_j) \|^2_{\Sigma_{ij}^{-1}}
-  \]
-  where \( x_i \) and \( x_j \) are poses, \( z_{ij} \) the measured relative transformation, and \( \Sigma_{ij} \) the covariance. Optimization methods (e.g., g2o) solve this nonlinear least-squares problem.
+  
+  $$ \min_{X} \sum_{i,j} \| z_{ij} - h(x_i, x_j) \|^2_{\Sigma_{ij}^{-1}} $$
+  
+  where \( x_i \) and \( x_j \) are poses, \( z_{ij} \) the measured relative transformation, and \( \Sigma_{ij} \) the covariance. Optimization methods like g2o solve this nonlinear least-squares problem.
 
 - **PID and Advanced Motion Control:**  
   The motion control law is implemented using PID controllers. The control input is computed as:
-  \[
-  u(t) = K_p e(t) + K_i \int_0^t e(\tau) \, d\tau + K_d \frac{de(t)}{dt}
-  \]
+  
+  $$ u(t) = K_p e(t) + K_i \int_0^t e(\tau) \, d\tau + K_d \frac{de(t)}{dt} $$
+  
   where \( e(t) \) is the error between desired and current state. Cubic spline interpolation and Hybrid-A* planning further smooth the path in complex environments.
 
 - **Reactive Obstacle Avoidance:**  
   Obstacles are avoided using potential fields where the repulsive force from an obstacle at distance \( d_i \) is given by:
-  \[
-  F_{\text{repulsive}} = \sum_{i=1}^{N} \frac{K_r}{d_i^2} \hat{d}_i
-  \]
+  
+  $$ F_{\text{repulsive}} = \sum_{i=1}^{N} \frac{K_r}{d_i^2} \hat{d}_i $$
+  
   This force is combined with the attractive force towards the goal, ensuring smooth, collision-free trajectories.
 
 ### Software Architecture
@@ -87,9 +87,9 @@ This project presents a state-of-the-art multi-robot system for collaborative ex
 
 - **Distributed SLAM:**  
   Each robot constructs local maps via Bayesian updates:
-  \[
-  P(m|z_{1:t}, x_{1:t}) \propto P(z_t|m, x_t) P(m|z_{1:t-1}, x_{1:t-1})
-  \]
+  
+  $$ P(m|z_{1:t}, x_{1:t}) \propto P(z_t|m, x_t) \, P(m|z_{1:t-1}, x_{1:t-1}) $$
+  
   and fuses them into a global map using iterative closest point (ICP) and pose graph optimization.
 
 - **Decentralized Coordination:**  
@@ -102,9 +102,9 @@ This project presents a state-of-the-art multi-robot system for collaborative ex
   
 - **Control Theory:**  
   The control system leverages PID control along with potential field methods. The error dynamics are defined as:
-  \[
-  \dot{e}(t) = \dot{x}_{\text{desired}}(t) - \dot{x}(t)
-  \]
+  
+  $$ \dot{e}(t) = \dot{x}_{\text{desired}}(t) - \dot{x}(t) $$
+  
   ensuring that the control input minimizes error while maintaining smooth trajectories.
 
 ### 2. Step-by-Step Working of the Framework
@@ -116,9 +116,9 @@ This project presents a state-of-the-art multi-robot system for collaborative ex
   
 - **Sensor Calibration:**  
   Both static and dynamic calibration align LiDAR, TOF, and IMU measurements using pre-computed transformation matrices:
-  \[
-  T = \begin{bmatrix} R & t \\ 0 & 1 \end{bmatrix}
-  \]
+  
+  $$ T = \begin{bmatrix} R & t \\ 0 & 1 \end{bmatrix} $$
+  
   where \( R \) is the rotation matrix and \( t \) is the translation vector.
 
 - **Role Assignment:**  
@@ -131,9 +131,9 @@ This project presents a state-of-the-art multi-robot system for collaborative ex
 
 - **Local Mapping:**  
   Local occupancy grids are built using Bayesian probability:
-  \[
-  \text{logit}(p) = \text{logit}(p_{\text{prior}}) + \sum_{i} \text{logit}(p(z_i|m))
-  \]
+  
+  $$ \text{logit}(p) = \text{logit}(p_{\text{prior}}) + \sum_{i} \text{logit}(p(z_i|m)) $$
+  
   ICP aligns successive scans, while graph optimization minimizes global errors.
 
 #### 2.3 Communication and Global Map Fusion
@@ -143,25 +143,25 @@ This project presents a state-of-the-art multi-robot system for collaborative ex
   
 - **Global Map Construction:**  
   Using Kalman filters and transformation matrices, local maps are fused into a coherent global representation:
-  \[
-  \hat{m}_{\text{global}} = \sum_{k} T_k \cdot m_k
-  \]
+  
+  $$ \hat{m}_{\text{global}} = \sum_{k} T_k \cdot m_k $$
+  
   Global pose graphs are optimized to ensure consistency.
 
 #### 2.4 Motion Control and Navigation
 
 - **Trajectory Planning:**  
   Hybrid-A* generates feasible paths in real time. Cubic splines smooth the path:
-  \[
-  S(t) = \sum_{i=0}^{n} a_i t^i
-  \]
+  
+  $$ S(t) = \sum_{i=0}^{n} a_i t^i $$
+  
   where coefficients \( a_i \) are determined to ensure continuity and smoothness.
 
 - **Reactive Control:**  
   PID controllers adjust the robot's speed and orientation:
-  \[
-  u(t) = K_p e(t) + K_i \int_0^t e(\tau) \, d\tau + K_d \frac{de(t)}{dt}
-  \]
+  
+  $$ u(t) = K_p e(t) + K_i \int_0^t e(\tau) \, d\tau + K_d \frac{de(t)}{dt} $$
+  
   Combined with potential fields, the control input adapts to obstacles in real time.
 
 #### 2.5 Adaptive Behavior and Map Refinement
@@ -177,24 +177,24 @@ This project presents a state-of-the-art multi-robot system for collaborative ex
 #### 3.1 Reinforcement Learning (RL) for Adaptive Navigation and Task Allocation
 
 - **Action Space Expansion:**  
-  Extend the control framework to include adaptive speed, dynamic goal switching, and environmental interaction. The action space \( A \) will include both continuous and discrete actions.
+  Extend the control framework to include adaptive speed control, dynamic goal switching, and environmental interaction. The action space \( A \) will include both continuous and discrete actions.
 
 - **Reward Function Design:**  
   Define rewards to balance exploration and exploitation:
-  \[
-  R(s,a) = \alpha \cdot \text{Coverage} - \beta \cdot \text{Collision Penalty} - \gamma \cdot \text{Energy Consumption}
-  \]
+  
+  $$ R(s,a) = \alpha \cdot \text{Coverage} - \beta \cdot \text{Collision Penalty} - \gamma \cdot \text{Energy Consumption} $$
+  
   with tunable parameters \( \alpha, \beta, \gamma \).
 
 - **RL Algorithm:**  
-  Implement Multi-Agent Proximal Policy Optimization (MAPPO) to allow decentralized learning. The policy \( \pi_\theta(a|s) \) is updated using:
-  \[
-  \theta \leftarrow \theta + \eta \nabla_\theta \mathbb{E} \left[ \min\left(r(\theta) A, \text{clip}(r(\theta), 1-\epsilon, 1+\epsilon) A\right) \right]
-  \]
+  Implement Multi-Agent Proximal Policy Optimization (MAPPO) for decentralized learning. The policy \( \pi_\theta(a|s) \) is updated using:
+  
+  $$ \theta \leftarrow \theta + \eta \nabla_\theta \mathbb{E} \left[ \min\left(r(\theta) A, \text{clip}(r(\theta), 1-\epsilon, 1+\epsilon) A\right) \right] $$
+  
   where \( r(\theta) \) is the probability ratio and \( A \) is the advantage function.
 
 - **Simulation-Based Training and Policy Transfer:**  
-  Train RL models in simulation (Gazebo, RViz) and employ domain randomization for robust transfer to real-world robots. The RL module will act as a high-level decision-maker, while low-level control remains with traditional PID methods.
+  Train RL models in simulation environments (Gazebo, RViz) and employ domain randomization for robust transfer to real-world scenarios. The RL module will serve as a high-level decision-maker, with low-level control maintained by traditional PID methods.
 
 #### 3.2 Expanded Swarm and Perception Capabilities
 
@@ -209,7 +209,8 @@ This project presents a state-of-the-art multi-robot system for collaborative ex
 
 ---
 
-This README provides a detailed, mathematically rigorous explanation of the multi-robot collaborative mapping framework. It outlines the key concepts, technical methods, step-by-step working of the system, and future directions, ensuring the project is scalable, robust, and at the cutting edge of robotics research.
+This README provides a detailed, mathematically rigorous explanation of the multi-robot collaborative mapping framework. It outlines the key concepts, technical methods, step-by-step system operation, and future directions, ensuring the project is scalable, robust, and at the cutting edge of robotics research.
+
 
 Now how to run:
 ## Prerequisites
