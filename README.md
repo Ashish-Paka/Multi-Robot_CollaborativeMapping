@@ -5,6 +5,7 @@
 This project presents a state-of-the-art multi-robot system for **collaborative exploration**, **mapping**, and **3D scene reconstruction** in complex, dynamic environments. Our framework integrates advanced sensor fusion, SLAM, decentralized coordination, and rigorous control theory. Each robot is equipped with high-precision LiDAR, 2D TOF cameras, and additional sensors to provide robust situational awareness and high-accuracy mapping. The system leverages classical control techniques, such as PID control and differential drive kinematics, alongside modern methodologies including Reinforcement Learning (RL) and swarm intelligence, to enable adaptive, intelligent behavior.
 
 ---
+![Project Media](Docs/9.png)
 
 ## System Overview
 
@@ -161,7 +162,7 @@ This project presents a state-of-the-art multi-robot system for **collaborative 
 #### 2.4 Motion Control and Navigation
 
 1. **Trajectory Planning:**  
-   - Collision-free paths are computed using the Hybrid-A* algorithm, which accounts for obstacles and dynamic constraints.  
+   - Collision-free paths are computed using the Hybrid-A* algorithm, which accounts for obstacles and dynamic constraints. Like ballistic motion.  
    - Cubic spline interpolation smooths the computed trajectory to ensure continuity, reducing abrupt changes in velocity or direction.
 
 2. **Differential Drive Control:**  
