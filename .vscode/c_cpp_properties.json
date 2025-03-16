@@ -1,0 +1,25 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "${default}",
+        "limitSymbolsToIncludedHeaders": false
+      },
+      "includePath": [
+        "/home/vedant/Multirobotslamtest/install/openslam_gmapping/include/**",
+        "/home/vedant/Multirobotslamtest/install/multirobot_map_merge/include/**",
+        "/home/vedant/Multirobotslamtest/install/explore_lite/include/**",
+        "/opt/ros/humble/include/**",
+        "/home/vedant/MultiRobotProject/src/m-explore-ros2/explore/include/**",
+        "/home/vedant/MultiRobotProject/src/m-explore-ros2/map_merge/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS",
+      "intelliSenseMode": "gcc-x64",
+      "compilerPath": "/usr/bin/gcc",
+      "cStandard": "gnu11",
+      "cppStandard": "c++14"
+    }
+  ],
+  "version": 4
+}

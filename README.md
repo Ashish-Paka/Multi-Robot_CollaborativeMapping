@@ -1,2 +1,2 @@
-# Multi-Robot_CollaborativeMapping
- Multi Robot Systems Collaborative LiDAR and Camera Mapping
+# Multi_Robot_Systems_CollaborativeMapping
+ Collaborative Mapping in ROS2

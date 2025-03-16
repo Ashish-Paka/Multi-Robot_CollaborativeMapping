@@ -1,0 +1,20 @@
+obstacle_avoider:
+  ros__parameters:
+    
+    # robot_name: robot2
+
+    robot1:
+      front_min_angle_degs: 330.0
+      front_max_angle_degs: 35.0
+      distance_threshold: 0.5
+      forward_speed: 0.5
+      rotation_speed: 0.4
+      rotation_time: 2.0
+
+    robot2:
+      front_min_angle_degs: 330.0
+      front_max_angle_degs: 35.0
+      distance_threshold: 0.5
+      forward_speed: 0.5
+      rotation_speed: 0.4
+      rotation_time: 2.0
