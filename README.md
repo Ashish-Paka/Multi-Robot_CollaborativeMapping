@@ -301,4 +301,4 @@ rviz2 -d <ros2_ws>/src/m-explore-ros2/map_merge/launch/map_merge.rviz
 ```
 
 
-# Please find the attached reports and documents in the docs folder. Thanks to my partners Vedant C and Akshay M.
+### Please find the attached reports and documents in the docs folder. Thanks to my partners Vedant C and Akshay Mahalle.
