@@ -3,6 +3,7 @@ from rclpy.node import Node
 from sensor_msgs.msg import LaserScan
 from geometry_msgs.msg import Twist
 import math
+import random , time
 
 class ObstacleAvoider_robot2(Node):
     def __init__(self, robot_name):
@@ -112,9 +113,21 @@ class ObstacleAvoider_robot2(Node):
 def main(args=None):
     rclpy.init(args=args)
     node = ObstacleAvoider_robot2('robot2')
-    rclpy.spin(node)
-    node.destroy_node()
-    rclpy.shutdown()
+    # Get the current time and calculate the end time
+    start_time = time.time()
+    duration = 10.5 * 60  # 10 minutes in seconds
+    end_time = start_time + duration
+
+    try:
+        while rclpy.ok():
+            rclpy.spin_once(node, timeout_sec=0.1)
+            if time.time() > end_time:
+                node.get_logger().info("10 minutes have elapsed. Shutting down the node.")
+                break
+    finally:
+        node.destroy_node()
+        rclpy.shutdown()
+
 
 if __name__ == '__main__':
     main()

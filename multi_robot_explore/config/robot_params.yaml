@@ -4,17 +4,17 @@ obstacle_avoider:
     # robot_name: robot2
 
     robot1:
-      front_min_angle_degs: 330.0
-      front_max_angle_degs: 35.0
-      distance_threshold: 0.5
-      forward_speed: 0.5
+      front_min_angle_degs: 340.0
+      front_max_angle_degs: 30.0
+      distance_threshold: 0.7
+      forward_speed: 0.7
       rotation_speed: 0.4
-      rotation_time: 2.0
+      rotation_time: 4.0
 
     robot2:
-      front_min_angle_degs: 330.0
+      front_min_angle_degs: 320.0
       front_max_angle_degs: 35.0
-      distance_threshold: 0.5
-      forward_speed: 0.5
-      rotation_speed: 0.4
-      rotation_time: 2.0
+      distance_threshold: 0.7
+      forward_speed: 0.7
+      rotation_speed: 0.5
+      rotation_time: 3.0
