@@ -253,7 +253,7 @@ Now how to run:
 
 2. Clone the repository:
     ```bash
-    git clone https://github.com/VedantC2307/MAE598-MultiRobotSystemsProject.git
+    [git clone https://github.com/VedantC2307/MAE598-MultiRobotSystemsProject.git](https://github.com/Ashish-Paka/Multi-Robot_Systems_CollaborativeMapping.git)
     ```
 
 3. Build the workspace:
